@@ -1,0 +1,7 @@
+Number of steps: 2;
+Position: 5;
+Current symbol: 0;
+Tape:
+....V......
+0000001010_
+
