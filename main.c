@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc < 4) {
-        printf("Wrong format.\nUse: <description>.txt <tape>.txt <out>.txt \nOr <description>.txt <tape>.txt <out>.txt -d");
+        printf("Error 1.\nWrong format.\nUse: <description>.txt <tape>.txt <out>.txt \nOr <description>.txt <tape>.txt <out>.txt -d");
         exit(1);
     }
 
@@ -34,8 +34,8 @@ int main(int argc, char *argv[]) {
     while(curState != 0){
         if (modeFlag != NULL) {
             if (strcmp(modeFlag, "-d") != 0) {
-                printf("Wrong flag.\n");
-                exit(1);
+                printf("Error 7.\nWrong flag.");
+                exit(7);
             }
 
             if (strcmp(modeFlag, "-d") == 0 && reqSteps == 0) {

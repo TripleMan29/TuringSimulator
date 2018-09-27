@@ -8,8 +8,8 @@ struct iterator *readTape(char *fileName, char voidSymbol) {
     FILE *input;
     input = fopen(fileName, "r");
     if (input == NULL) {
-        printf("File \"%s\" can't be open.\n", fileName);
-        exit(1);
+        printf("Error 2.\nFile \"%s\" can't be open.", fileName);
+        exit(2);
     }
 
 
@@ -27,8 +27,8 @@ struct iterator *readTape(char *fileName, char voidSymbol) {
     char tape[1280000];
     //проверка на содержание ленты
     if (!fgets(tape, sizeof(tape), input)) {
-        printf("The file is empty %s", fileName);
-        exit(1);
+        printf("Error 4.\nThe file %s is empty.", fileName);
+        exit(4);
     }
     do {
         char *tapePart;
@@ -41,8 +41,8 @@ struct iterator *readTape(char *fileName, char voidSymbol) {
 
         //проверка на отсутствие каретки
         if (tape[i] == '\n' || tape[i] == '\0') {
-            printf("No pointer (V)\n");
-            exit(1);
+            printf("Error 5.\nNo pointer (V).");
+            exit(5);
         }
 
         newListOfTapeCell->curPosition = i + 1;
@@ -55,8 +55,8 @@ struct iterator *readTape(char *fileName, char voidSymbol) {
 
         //проверка на вхождение каретки в ленту
         if (i >= strlen(tapePart)) {
-            printf("Pointer out of tape(V)");
-            exit(1);
+            printf("Error 6.\nPointer out of tape(V).");
+            exit(6);
         }
         for (int j = 0; j < strlen(tapePart) - 1; ++j) {
 

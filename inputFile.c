@@ -9,8 +9,8 @@ struct listOfStates* readDescription(char *file, struct listOfStates *states, in
     FILE *input;
     input = fopen(file, "r");
     if (input == NULL) {
-        printf("File \"%s\" can't be open", file);
-        exit(1);
+        printf("Error 2.\nFile \"%s\" can't be open.", file);
+        exit(2);
     }
 
     char tmpLine[1280000];
@@ -19,8 +19,8 @@ struct listOfStates* readDescription(char *file, struct listOfStates *states, in
     fgets(tmpLine, sizeof(tmpLine), input);
     *curState = atoi(strcut(tmpLine,1,strlen(tmpLine)));
     if (*curState == 0) {
-        printf("Wrong start state.");
-        exit(1);
+        printf("Error 3.\nWrong start state.");
+        exit(3);
     }
 
 
@@ -83,6 +83,10 @@ void splitState(char state[], struct listOfStates *states) {
         newStateCell->curCondition = strdup(strtok(statePart, "->"));
         newStateCell->newCondition = strdup(strtok(NULL, "->"));
         char *newState = strtok(NULL, "->");
+        if(newState == NULL){
+            printf("Error 9.\nLess curCondition on step num.");
+            exit(9);
+        }
         newState = strcut(newState, 1, strlen(newState) - 1);
         newStateCell->nextState = strtol(newState, NULL, 0);
         newStateCell->next = NULL;

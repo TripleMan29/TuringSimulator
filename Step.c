@@ -13,8 +13,8 @@ void step(
     struct listOfStates *curListOfStatesCell = states;
     while (curListOfStatesCell != NULL && curListOfStatesCell->stateNumb != *curState) curListOfStatesCell = curListOfStatesCell->nextState;
     if(curListOfStatesCell == NULL) {
-        printf("No suitable state on step num.%i.\n", numOfStep);
-        exit(1);
+        printf("Error 8.\nNo suitable state on step num.%i.", numOfStep);
+        exit(8);
     }
 
     //ищем подходящую часть состояния
@@ -24,10 +24,6 @@ void step(
         char *curCondition = strdup(curStateCell->curCondition);
 
         //сравнение condition с tape
-        if (curCondition == NULL) {
-            printf("Less curCondition on step num.%i", numOfStep);
-            exit(1);
-        }
         if (curListOfTapeCell->curSymbol != *curCondition) {
 
             curStateCell = curStateCell->next;
@@ -58,8 +54,8 @@ void step(
                     curListOfTapeCell->curPosition = curTapeCell->prev->position;
                     curListOfTapeCell->curSymbol = curTapeCell->prev->data;
                 } else {
-                    printf("Can't make left step on step num.%i", numOfStep);
-                    exit(1);
+                    printf("Error 10.\nCan't make left step on step num.%i.", numOfStep);
+                    exit(10);
                 }
                 break;
             case 'R':
@@ -76,8 +72,8 @@ void step(
                 break;
             default:
                 if (*stepDir != 'S') {
-                    printf("Wrong step condition in step num.%i.", numOfStep);
-                    exit(1);
+                    printf("Error 11.\nWrong step condition in step num.%i.", numOfStep);
+                    exit(11);
                 }
                 curListOfTapeCell->curSymbol = curTapeCell->data;
                 break;
