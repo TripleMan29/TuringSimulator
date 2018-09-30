@@ -12,12 +12,16 @@ struct listOfStates* readDescription(char *file, struct listOfStates *states, in
         printf("Error 2.\nFile \"%s\" can't be open.", file);
         exit(2);
     }
+    int length;
 
-    char tmpLine[1280000];
+    fseek(input, 0, SEEK_END);
+    length = ftell(input);
+    fseek(input, 0, SEEK_SET);
+    char tmpLine[length];
 
     //считываем начальное состояние
     fgets(tmpLine, sizeof(tmpLine), input);
-    *curState = atoi(strcut(tmpLine,1,strlen(tmpLine)));
+    *curState = atoi(strcut(tmpLine,1,strlen(tmpLine) - 1));
     if (*curState == 0) {
         printf("Error 3.\nWrong start state.");
         exit(3);
@@ -40,13 +44,13 @@ struct listOfStates* readDescription(char *file, struct listOfStates *states, in
 char *strcut(char *string, int fromIndex, int toIndex) {
     if (strlen(string) == 0)
         return string;
-    char *result = strdup(string);
+    char *result = string;
     if (toIndex > (int)strlen(string) - 1)
         toIndex = strlen(string) - 1;
     int length = toIndex - fromIndex + 1;
     if (length < 1) return "";
     if (length == 1) result[0] = string[fromIndex];
-    for (int i = fromIndex; i < toIndex; ++i) {
+    for (int i = fromIndex; i <= toIndex; ++i) {
         result[i - fromIndex] = string[i];
     }
     result[length] = '\0';

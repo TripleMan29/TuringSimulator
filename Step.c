@@ -10,15 +10,14 @@ void step(
     numOfStep++;
 
     //находим состояние
-    struct listOfStates *curListOfStatesCell = states;
-    while (curListOfStatesCell != NULL && curListOfStatesCell->stateNumb != *curState) curListOfStatesCell = curListOfStatesCell->nextState;
-    if(curListOfStatesCell == NULL) {
+    while (states != NULL && states->stateNumb != *curState) states = states->nextState;
+    if(states == NULL) {
         printf("Error 8.\nNo suitable state on step num.%i.", numOfStep);
         exit(8);
     }
 
     //ищем подходящую часть состояния
-    curStateCell = curListOfStatesCell->thisState;
+    curStateCell = states->thisState;
     struct iterator *curListOfTapeCell = tape;
     while (curListOfTapeCell != NULL) {
         char *curCondition = strdup(curStateCell->curCondition);
@@ -36,7 +35,7 @@ void step(
 
     char *nextCondition = strdup(curStateCell->newCondition);
     curListOfTapeCell = tape;
-    while (curListOfTapeCell != NULL) {
+
         //доходим до положения каретки
         struct tapeCell *curTapeCell = curListOfTapeCell->thisTapeCell;
         while (curListOfTapeCell->curPosition != curTapeCell->position) curTapeCell = curTapeCell->next;
@@ -79,10 +78,9 @@ void step(
                 break;
         }
 
-        curListOfTapeCell = NULL;
         free(newData);
         free(stepDir);
-    }
+
 
     *curState = curStateCell->nextState;
     free(nextCondition);

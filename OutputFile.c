@@ -8,22 +8,21 @@ void foutCondition(char *file, struct iterator *tape, int numOfStep) {
 
 
     fprintf(output, "Number of steps: %i;\n", numOfStep);
-    struct iterator *curListOfTapeCell = tape;
 
         fprintf(output, "Position: %i;\nCurrent symbol: %c;\nTape:",
-                curListOfTapeCell->curPosition, curListOfTapeCell->curSymbol);
-        struct tapeCell *curTapeCell = curListOfTapeCell->thisTapeCell;
+                tape->curPosition, tape->curSymbol);
+        struct tapeCell *curTapeCell = tape->thisTapeCell;
 
         fprintf(output,"\n");
 
         while (curTapeCell != NULL) {
-            if (curListOfTapeCell->curPosition == curTapeCell->position) fprintf(output,"V");
+            if (tape->curPosition == curTapeCell->position) fprintf(output,"V");
             else fprintf(output,".");
             curTapeCell = curTapeCell->next;
         }
         fprintf(output,"\n");
 
-        curTapeCell = curListOfTapeCell->thisTapeCell;
+        curTapeCell = tape->thisTapeCell;
 
         while (curTapeCell != NULL) {
             fprintf(output, "%c", curTapeCell->data);

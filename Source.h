@@ -5,7 +5,7 @@ struct iterator
 {
     char curSymbol; //символ под кареткой
     int curPosition; //позиция каретки
-    struct tapeCell* thisTapeCell; //указатель на первый элемент ленты (левый)
+    struct tapeCell* thisTapeCell; //указатель на первый элемент ленты
 };
 
 struct tapeCell //ячейка ленты

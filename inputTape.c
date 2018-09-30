@@ -24,7 +24,14 @@ struct iterator *readTape(char *fileName, char voidSymbol) {
     newListOfTapeCell->curSymbol = newTapeCell->data;
     newListOfTapeCell->curPosition = newTapeCell->position;
 
-    char tape[1280000];
+
+    int length;
+
+    fseek(input, 0, SEEK_END);
+    length = ftell(input);
+    fseek(input, 0, SEEK_SET);
+    char tape[length];
+    
     //проверка на содержание ленты
     if (!fgets(tape, sizeof(tape), input)) {
         printf("Error 4.\nThe file %s is empty.", fileName);

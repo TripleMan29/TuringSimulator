@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
 
     char *descriptionFile, *outputFile, *tapeFile;
     char *modeFlag = NULL;
-    int reqSteps = 0, numOfStep = 0;
+    int numOfStep = 0;
     struct iterator *tape = NULL;
     struct listOfStates *states = NULL;
     char voidSymbol = '_';
@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
                 exit(7);
             }
 
-            if (strcmp(modeFlag, "-d") == 0 && reqSteps == 0) {
+            if (strcmp(modeFlag, "-d") == 0) {
                 int choice;
                 do {
                     printIssues();
@@ -66,7 +66,6 @@ int main(int argc, char *argv[]) {
                 } while (choice != 1);
             }
         }
-        if (reqSteps > 0) reqSteps--;
         step(tape, states, voidSymbol, numOfStep, &curState, curStateCell);
         numOfStep ++;
     }

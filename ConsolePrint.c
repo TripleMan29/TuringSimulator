@@ -11,7 +11,7 @@ void printIssues(){
 
 void printCurState(struct iterator *tape, int numOfStep, int curState) {
     printf("----------------------------\n");
-    printf("Step number%i\n", numOfStep);
+    printf("Step number: %i\n", numOfStep);
     printf("Current state: q%i\n", curState);
     printf("Tape:\n");
 
