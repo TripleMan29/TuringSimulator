@@ -69,18 +69,18 @@ struct iterator *readTape(char *fileName, char voidSymbol) {
             if (j == newListOfTapeCell->curPosition - 1) {
                 newListOfTapeCell->curSymbol = tapePart[j];
             }
-            struct tapeCell *curTapeCell = newListOfTapeCell->thisTapeCell;
-            while (curTapeCell->next != NULL) curTapeCell = curTapeCell->next;
-            curTapeCell->data = tapePart[j];
+            //struct tapeCell *curTapeCell = newTapeCell;
+            while (newTapeCell->next != NULL) newTapeCell = newTapeCell->next;
+            newTapeCell->data = tapePart[j];
 
             //добавляем крайний пустой символ
             if(j < strlen(tapePart) - 1) {
                 struct tapeCell *voidCell = (struct tapeCell *) malloc(sizeof(*voidCell));
                 voidCell->next = NULL;
                 voidCell->data = voidSymbol;
-                voidCell->prev = curTapeCell;
-                voidCell->position = (curTapeCell->position + 1);
-                curTapeCell->next = voidCell;
+                voidCell->prev = newTapeCell;
+                voidCell->position = (newTapeCell->position + 1);
+                newTapeCell->next = voidCell;
             }
         }
         fclose(input);
