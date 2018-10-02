@@ -38,6 +38,6 @@ void printTape(struct iterator *tape);
 struct listOfStates* readDescription(char *file, struct listOfStates *states, int *curState);
 struct iterator* readTape(char *fileName, char voidSymbol);
 void foutCondition(char *file, struct iterator *tape, int numOfStep);
-void step(struct iterator *tape, struct listOfStates *states, char voidSymbol, int numOfStep, int *curState, struct state *curStateCell);
+void step(struct iterator *tape, struct listOfStates *states, int numOfStep, int *curState, struct state *curStateCell);
 
 #endif //TURINGMAFORONETAPE_SOURCE_H

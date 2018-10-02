@@ -37,7 +37,6 @@ struct iterator *readTape(char *fileName, char voidSymbol) {
         printf("Error 4.\nThe file %s is empty.", fileName);
         exit(4);
     }
-        char *tapePart;
 
         //считываем положение каретки
         int i = 0;
@@ -55,26 +54,21 @@ struct iterator *readTape(char *fileName, char voidSymbol) {
 
         fgets(tape, sizeof(tape), input);
 
-        //записываем ленту
-        tapePart = tape;
-        if (tapePart[strlen(tapePart) - 1] == '\n') tapePart = strcut(tapePart, 0, strlen(tapePart) - 2);
-
         //проверка на вхождение каретки в ленту
-        if (i >= strlen(tapePart)) {
+        if (i >= strlen(tape)) {
             printf("Error 6.\nPointer out of tape(V).");
             exit(6);
         }
-        for (int j = 0; j < strlen(tapePart); ++j) {
+        for (int j = 0; j < strlen(tape); ++j) {
 
             if (j == newListOfTapeCell->curPosition - 1) {
-                newListOfTapeCell->curSymbol = tapePart[j];
+                newListOfTapeCell->curSymbol = tape[j];
             }
-            //struct tapeCell *curTapeCell = newTapeCell;
             while (newTapeCell->next != NULL) newTapeCell = newTapeCell->next;
-            newTapeCell->data = tapePart[j];
+            newTapeCell->data = tape[j];
 
             //добавляем крайний пустой символ
-            if(j < strlen(tapePart) - 1) {
+            if(j < strlen(tape) - 1) {
                 struct tapeCell *voidCell = (struct tapeCell *) malloc(sizeof(*voidCell));
                 voidCell->next = NULL;
                 voidCell->data = voidSymbol;

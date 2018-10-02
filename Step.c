@@ -5,8 +5,7 @@
 
 void step(
         struct iterator *tape,
-        struct listOfStates *states,
-        char voidSymbol, int numOfStep, int *curState, struct state *curStateCell) {
+        struct listOfStates *states, int numOfStep, int *curState, struct state *curStateCell) {
 
     //находим состояние
     while (states != NULL && states->stateNumb != *curState) states = states->nextState;
@@ -57,16 +56,14 @@ void step(
                 }
                 break;
             case 'R':
-                if (curTapeCell->next == NULL) {
-                    struct tapeCell *newTapeCell = (struct tapeCell *) malloc(sizeof(*newTapeCell));
-                    newTapeCell->next = NULL;
-                    newTapeCell->data = voidSymbol;
-                    newTapeCell->prev = curTapeCell;
-                    newTapeCell->position = curTapeCell->position + 1;
-                    curTapeCell->next = newTapeCell;
+                if (curTapeCell->next != NULL) {
+                    curListOfTapeCell->curPosition = curTapeCell->next->position;
+                    curListOfTapeCell->curSymbol = curTapeCell->next->data;
+                } else{
+                    printf("Error 12.\nCan't make right step on step num.%i.", numOfStep);
+                    exit(12);
                 }
-                curListOfTapeCell->curPosition = curTapeCell->next->position;
-                curListOfTapeCell->curSymbol = curTapeCell->next->data;
+
                 break;
             default:
                 if (*stepDir != 'S') {

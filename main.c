@@ -43,9 +43,9 @@ int main(int argc, char *argv[]) {
                 do {
                     printIssues();
                     char *choiceLine = NULL;
-                    char tmpLine[20000] = "";
+                    char tmpLine[2] = "";
                     choiceLine = gets(tmpLine);
-                    choice = atoi(choiceLine);
+                    choice = strtol(choiceLine, NULL, 0);
                     switch (choice) {
                         case 1:
                             break;
@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
                 } while (choice != 1);
             }
         }
-        step(tape, states, voidSymbol, numOfStep, &curState, curStateCell);
+        step(tape, states, numOfStep, &curState, curStateCell);
         numOfStep ++;
     }
 

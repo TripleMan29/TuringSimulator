@@ -21,7 +21,7 @@ struct listOfStates* readDescription(char *file, struct listOfStates *states, in
 
     //считываем начальное состояние
     fgets(tmpLine, sizeof(tmpLine), input);
-    *curState = atoi(strcut(tmpLine,1,strlen(tmpLine) - 1));
+    *curState = strtol(strcut(tmpLine,1,strlen(tmpLine) - 1), NULL, 0);
     if (*curState == 0) {
         printf("Error 3.\nWrong start state.");
         exit(3);
@@ -67,7 +67,6 @@ void splitState(char state[], struct listOfStates *states) {
     }
 
     //определяем номер состояния
-    if (state[strlen(state) - 1] == '\n') state = strcut(state, 0, strlen(state) - 2); // избавляемся от переноса строки
     char *statePart = strdup(state);
     statePart = strtok(statePart, " ");
     state = strcut(state, strlen(statePart) + 1, strlen(state) - 1);
