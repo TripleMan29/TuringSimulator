@@ -7,7 +7,6 @@ void step(
         struct iterator *tape,
         struct listOfStates *states,
         char voidSymbol, int numOfStep, int *curState, struct state *curStateCell) {
-    numOfStep++;
 
     //находим состояние
     while (states != NULL && states->stateNumb != *curState) states = states->nextState;

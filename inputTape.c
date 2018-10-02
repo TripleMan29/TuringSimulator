@@ -64,22 +64,24 @@ struct iterator *readTape(char *fileName, char voidSymbol) {
             printf("Error 6.\nPointer out of tape(V).");
             exit(6);
         }
-        for (int j = 0; j < strlen(tapePart) - 1; ++j) {
+        for (int j = 0; j < strlen(tapePart); ++j) {
 
-            if (j == newListOfTapeCell->curPosition) {
-                newListOfTapeCell->curSymbol = tapePart[j - 1];
+            if (j == newListOfTapeCell->curPosition - 1) {
+                newListOfTapeCell->curSymbol = tapePart[j];
             }
             struct tapeCell *curTapeCell = newListOfTapeCell->thisTapeCell;
             while (curTapeCell->next != NULL) curTapeCell = curTapeCell->next;
             curTapeCell->data = tapePart[j];
 
             //добавляем крайний пустой символ
-            struct tapeCell *voidCell = (struct tapeCell *) malloc(sizeof(*voidCell));
-            voidCell->next = NULL;
-            voidCell->data = voidSymbol;
-            voidCell->prev = curTapeCell;
-            voidCell->position = (curTapeCell->position + 1);
-            curTapeCell->next = voidCell;
+            if(j < strlen(tapePart) - 1) {
+                struct tapeCell *voidCell = (struct tapeCell *) malloc(sizeof(*voidCell));
+                voidCell->next = NULL;
+                voidCell->data = voidSymbol;
+                voidCell->prev = curTapeCell;
+                voidCell->position = (curTapeCell->position + 1);
+                curTapeCell->next = voidCell;
+            }
         }
         fclose(input);
     return newListOfTapeCell;
