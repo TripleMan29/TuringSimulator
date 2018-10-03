@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
                 do {
                     printIssues();
                     char *choiceLine = NULL;
-                    char tmpLine[2] = "";
+                    char tmpLine[20000] = "";
                     choiceLine = gets(tmpLine);
                     choice = strtol(choiceLine, NULL, 0);
                     switch (choice) {

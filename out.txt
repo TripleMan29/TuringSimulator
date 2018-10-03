@@ -1,6 +1,6 @@
-Number of steps: 12;
-Position: 10;
+Number of steps: 8;
+Position: 8;
 Current symbol: 0;
 Tape:
-.........V
-0000010100
+.......V
+00000000
